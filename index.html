@@ -1,12 +1,39 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>npsat_web_frontend</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Non-Point Source Assessment Tool</title>
+</head>
+<body>
+  <div id="npsat_crops">
+    <ol id="crop_parameters">
+      <crop_box v-for="crop in selected_crops"
+                v-bind:crop="crop.name"
+                v-bind:key="crop.id"></crop_box>
+    </ol>
+  </div>
+
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="application/javascript" language="JavaScript">
+  // COMPONENTS
+  Vue.component('crop_box', {
+    props: ['crop'],
+    template: '<li class="crop_selection_box"{{ crop.name }}</li>',
+  });
+
+  var npsat_crops = new Vue({
+      el: '#npsat_crops',
+      data: {
+        selected_crops: [
+          { id:0, name: 'All other crops'},
+          { id:1, name: 'Corn'},
+          { id:2, name: 'Grapes'},
+        ]
+      }
+  });
+
+  </script>
 </html>
