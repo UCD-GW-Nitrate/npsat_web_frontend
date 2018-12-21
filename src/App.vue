@@ -1,15 +1,33 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
-  </div>
+<div id="npsat_crops">
+  <ol id="crop_parameters">
+    <CropBox v-for="crop in SelectedCrops"
+             v-bind:crop="crop"
+             v-bind:key="crop.id"></CropBox>
+  </ol>
+</div>
 </template>
 
 <script>
+import CropBox from '@/components/CropBox'
+
+var SelectedCrops = [
+  {id: 0, name: 'All other crops'},
+  {id: 1, name: 'Corn'},
+  {id: 2, name: 'Grapes'}
+]
+
 export default {
-  name: 'App'
+  components: {CropBox},
+  data () {
+    return {SelectedCrops: SelectedCrops}
+  }
 }
 </script>
+
+<style lang="sass">
+  @import 'styles/npsat.sass'
+</style>
 
 <style>
 #app {
