@@ -1,7 +1,7 @@
 <template>
 <div id="npsat_crops">
   <ol id="crop_parameters">
-    <CropBox v-for="crop in SelectedCrops"
+    <CropBox v-for="crop in AvailableCrops"
              v-bind:crop="crop"
              v-bind:key="crop.id"></CropBox>
   </ol>
@@ -10,17 +10,23 @@
 
 <script>
 import CropBox from '@/components/CropBox'
-
-var SelectedCrops = [
-  {id: 0, name: 'All other crops'},
-  {id: 1, name: 'Corn'},
-  {id: 2, name: 'Grapes'}
-]
+import CropAPI from '@/services/api/crops'
 
 export default {
   components: {CropBox},
   data () {
-    return {SelectedCrops: SelectedCrops}
+    return {
+      loading: true,
+      AvailableCrops: []
+    }
+  },
+  created () {
+    CropAPI.getCrops()
+      .then(crops => {
+        this.AvailableCrops = crops
+      })
+      .catch(error => console.log(error))
+      .finally(this.loading = false)
   }
 }
 </script>
