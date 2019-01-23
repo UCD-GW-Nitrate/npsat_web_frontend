@@ -22,7 +22,7 @@ Vue.config.productionTip = false
 
 // eslint-disable next-line
 var NPSATCrops = new Vue({
-  el: '#npsat_crops',
+  el: '#npsat_web',
   components: { App },
   template: '<App/>'
 })
