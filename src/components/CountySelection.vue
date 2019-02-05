@@ -1,6 +1,6 @@
 <template>
     <option v-bind:value="county.ab_code">
-      {{ county.name }}
+      {{ county.name }} County
     </option>
 </template>
 
