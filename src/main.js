@@ -8,7 +8,7 @@ import axios from 'axios'
 // TODO: For final deployment, we'd want a way for each server to define this
 axios.defaults.baseURL = 'http://npsat.watershed.ucdavis.edu/api/'
 // Public Token - change for final deployment!
-axios.defaults.headers.common['Authorization'] = 'Token c4e255c1d9f4404dab05ed27aa2e929cf8f53c42'
+axios.defaults.headers.common['Authorization'] = 'Token 39821f48b3b4f113b964d30877c252890a212b48'
 
 Vue.config.productionTip = false
 
