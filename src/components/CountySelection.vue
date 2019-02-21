@@ -10,7 +10,7 @@ export default {
   props: {
     county: { required: true }
   }
-}
+};
 </script>
 
 <style scoped>

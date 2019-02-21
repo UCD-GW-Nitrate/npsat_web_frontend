@@ -32,13 +32,13 @@
 </template>
 
 <script>
-import vSelect from 'vue-select'
-import CropBox from '@/components/CropBox'
-import CropSelection from '@/components/CropSelection'
-import CountySelection from '@/components/CountySelection'
-import Plot from '@/components/Plot'
-import CropAPI from '@/services/api/crops'
-import CountyAPI from '@/services/api/counties'
+import vSelect from 'vue-select';
+import CropBox from '@/components/CropBox';
+import CropSelection from '@/components/CropSelection';
+import CountySelection from '@/components/CountySelection';
+import Plot from '@/components/Plot';
+import CropAPI from '@/services/api/crops';
+import CountyAPI from '@/services/api/counties';
 
 export default {
   components: {CropBox, CropSelection, CountySelection, Plot, vSelect},
@@ -50,32 +50,32 @@ export default {
       selected_county: null,
       selected_crop: null,
       modified_crops: [] // crops actually being adjusted
-    }
+    };
   },
   created () {
     CropAPI.getCrops()
       .then(crops => {
-        this.AvailableCrops = crops
+        this.AvailableCrops = crops;
       })
       .catch(error => console.log(error))
-      .finally(this.loading = false)
+      .finally(this.loading = false);
     CountyAPI.getCounties()
       .then(counties => {
-        this.Counties = counties
+        this.Counties = counties;
       })
       .catch(error => {
-        console.log(error)
-        console.log('Failed to retrieve counties from API')
+        console.log(error);
+        console.log('Failed to retrieve counties from API');
       })
-      .finally(this.loading = false)
+      .finally(this.loading = false);
   },
   methods: { },
   watch: {
     selected_crop: function (crop) {
-      this.modified_crops.push(crop)
+      this.modified_crops.push(crop);
     }
   }
-}
+};
 </script>
 
 <style lang="sass">

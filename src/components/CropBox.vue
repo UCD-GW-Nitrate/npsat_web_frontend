@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import vueSlider from 'vue-slider-component'
+import vueSlider from 'vue-slider-component';
 
 export default {
   name: 'CropBox',
@@ -16,12 +16,12 @@ export default {
   data: function () {
     return {
       application_proportion: 100
-    }
+    };
   },
   components: {
     vueSlider
   }
-}
+};
 
 </script>
 

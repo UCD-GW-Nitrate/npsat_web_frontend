@@ -10,7 +10,7 @@ export default {
   props: {
     crop: { required: true }
   }
-}
+};
 </script>
 
 <style scoped>
