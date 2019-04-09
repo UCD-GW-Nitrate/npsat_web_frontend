@@ -3,12 +3,15 @@
 import Vue from 'vue';
 import App from './App';
 import axios from 'axios';
+
+const localSettings = require('./local_settings');
 // import router from './router'
 
 // TODO: For final deployment, we'd want a way for each server to define this
-axios.defaults.baseURL = 'http://npsat.watershed.ucdavis.edu/api/';
+axios.defaults.baseURL = localSettings.api_url;
 // Public Token - change for final deployment!
-axios.defaults.headers.common['Authorization'] = 'Token 39821f48b3b4f113b964d30877c252890a212b48';
+// swift token 39821f48b3b4f113b964d30877c252890a212b48
+axios.defaults.headers.common['Authorization'] = 'Token ' + localSettings.public_token;
 
 Vue.config.productionTip = false;
 

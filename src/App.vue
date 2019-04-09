@@ -27,6 +27,7 @@
     </div>
     <div id="npsat_outputs" class="npsat_column pure-u-sm-1 pure-u-md-1-3">
       <h2>View Outputs</h2>
+      <button v-on:click="test_send">Test Send</button>
     </div>
   </div>
 </template>
@@ -39,6 +40,8 @@ import CountySelection from '@/components/CountySelection';
 import Plot from '@/components/Plot';
 import CropAPI from '@/services/api/crops';
 import CountyAPI from '@/services/api/counties';
+
+import axios from 'axios';
 
 export default {
   components: {CropBox, CropSelection, CountySelection, Plot, vSelect},
@@ -69,7 +72,24 @@ export default {
       })
       .finally(this.loading = false);
   },
-  methods: { },
+  methods: {
+    // I think we're going to need to send the modifications individually
+    // after we've created the model run - we'll send the model run with
+    // the county and at some point the user, then create the modifications
+    // and attach them to the model run by id
+    test_send: function () {
+      var json = {county: {ab_code: 'c054'}};
+      var modifications = {modifications: [
+        {name: 'Corn',
+          proportion: 0.50},
+        {name: 'Grapes',
+          proportion: 0.75}]
+      };
+      console.log(modifications);
+
+      axios.post('http://127.0.0.1:8080/api/model_run/', json);
+    }
+  },
   watch: {
     selected_crop: function (crop) {
       this.modified_crops.push(crop);

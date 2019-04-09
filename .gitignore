@@ -1,3 +1,6 @@
+# ignore local settings file - copy template for each machine
+/src/local_settings.js
+
 .DS_Store
 node_modules/
 /dist/
