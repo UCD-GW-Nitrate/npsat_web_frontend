@@ -1,10 +1,7 @@
 <template>
 
-  <div id="npsat_web" class="pure-g">
-    <div id="header" class="pure-u-1-1">
-      <h1>NPSAT Web</h1>
-    </div>
-    <div id="npsat_area" class="npsat_column pure-u-sm-1 pure-u-md-1-3">
+  <div id="npsat_web" class="pure-u-1-1">
+    <div id="npsat_area" class="npsat_column pure-u-lg-1-3 pure-u-md-1-3 pure-u-sm-1-1">
       <h2>Area to Estimate</h2>
       <select v-model="selected_county">
         <option disabled value="">Please select a county</option>
@@ -15,7 +12,7 @@
       </select>
       <p>Selected: {{ selected_county }}</p>
     </div>
-    <div id="npsat_crops" class="npsat_column pure-u-sm-1 pure-u-md-1-3">
+    <div id="npsat_crops" class="npsat_column pure-u-lg-1-3 pure-u-md-1-3 pure-u-sm-1-1">
       <h2>Adjust Crop Loadings</h2>
       <p style="font-style:italic;text-align:right;margin-top:0">All values below relative to 2020</p>
       <ol id="crop_parameters" ref="crop_parameters">
@@ -25,9 +22,9 @@
       </ol>
       <v-select label="name" :options="AvailableCrops" v-model="selected_crop" ></v-select>
     </div>
-    <div id="npsat_outputs" class="npsat_column pure-u-sm-1 pure-u-md-1-3">
+    <div id="npsat_outputs" class="npsat_column pure-u-lg-1-3 pure-u-md-1-3 pure-u-sm-1-1">
       <h2>View Outputs</h2>
-      <button v-on:click="test_send">Test Send</button>
+      <button v-on:click="run_npsat">Run Model</button>
     </div>
   </div>
 </template>
@@ -77,17 +74,20 @@ export default {
     // after we've created the model run - we'll send the model run with
     // the county and at some point the user, then create the modifications
     // and attach them to the model run by id
-    test_send: function () {
+    run_npsat: function () {
       var json = {county: {ab_code: 'c054'}};
-      var modifications = {modifications: [
+      var modifications = [
         {name: 'Corn',
           proportion: 0.50},
         {name: 'Grapes',
-          proportion: 0.75}]
-      };
+          proportion: 0.75}
+      ];
       console.log(modifications);
 
-      axios.post('http://127.0.0.1:8080/api/model_run/', json);
+      console.log(this.modified_crops);
+
+      var result = axios.post('http://127.0.0.1:8080/api/model_run/', json);
+      console.log(result);
     }
   },
   watch: {
@@ -110,5 +110,12 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+button {
+  background-color: #f0f6ff;
+  padding: 0.75em;
+  border: 1px solid #666;
+  border-radius: 3px;
 }
 </style>

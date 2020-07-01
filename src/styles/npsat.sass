@@ -1,20 +1,48 @@
+$pure_sm_break: 568px
+$pure_md_break: 768px
+$pure_lg_break: 1024px
+$pure_xl_break: 1280px
+
+$pure_sm_break_em: 35.5em
+$pure_md_break_em: 48em
+$pure_lg_break_em: 64em
+$pure_xl_break_em: 80em
+
+div, nav, header, main, footer, p
+  -webkit-box-sizing: border-box
+  -moz-box-sizing: border-box
+  box-sizing: border-box
+
 body
   background-color: #fff
 
+
+header
+  margin-top: 1em
+  nav
+    padding-top: 1em
+    text-align: right
+
+main
+  width: 100%
+
+  @media screen and (min-width: $pure_lg_break)
+    min-height: 500px
+  @media screen and (max-width: $pure_md_break)
+    min-height: 350px
+  @media screen and (max-width: $pure_sm_break)
+    min-height: 150px
 
 h1
   margin-left: 1em
   font-weight: normal
 
-.pure-g > div
+.npsat_column
+  margin: 0 1em
+  padding: 1em
   -webkit-box-sizing: border-box
   -moz-box-sizing: border-box
   box-sizing: border-box
-
-.npsat_column
-  border-radius: 3px
-  margin: 0 1em
-  padding: 1em
 
   h2
     margin-top: 0
@@ -28,3 +56,11 @@ h1
 .pure-u-md-1-3.npsat_column
   width: 30%
   margin: 0 1.5%
+
+footer
+  margin: 2em
+  text-align: center
+  font-size: .8em
+  border-top: 1px solid #999
+
+
